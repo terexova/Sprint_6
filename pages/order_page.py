@@ -1,6 +1,6 @@
 import allure
 
-from data import UrlScooterLogin
+from data import UrlScooter
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -21,27 +21,27 @@ class OrderPage(BasePage):
     BUTTON_YES = (By.XPATH, "//button[text() = 'Да']")
     STATUS_ORDER = (By.XPATH, "//div[text() = 'Заказ оформлен']")
 
-    def __init__(self, driver, option):
+    def __init__(self, driver):
         self.driver = driver
-        self.option = option
 
+    @allure.step('Открытие страницы Яндекс.Самокат')
     def open_page(self):
-        self.driver.get(UrlScooterLogin.URL_LOGIN)
+        self.open_url(UrlScooter.URL)
 
     @allure.step('Заполнить поле Имя')
     def click_name(self):
         name_input = self.wait_and_find_element(self.LOGIN_NAME)
-        name_input.send_keys('Ольга' if self.option == 0 else 'Анна')
+        name_input.send_keys('Ольга')
 
     @allure.step('Заполнить поле Фамилия')
     def click_last_name(self):
         last_name_input = self.wait_and_find_element(self.LOGIN_LAST_NAME)
-        last_name_input.send_keys('Терехова' if self.option == 0 else 'Коваленко')
+        last_name_input.send_keys('Терехова')
 
     @allure.step('Заполнить поле Адрес')
     def click_address(self):
         address_input = self.wait_and_find_element(self.LOGIN_ADDRESS)
-        address_input.send_keys('Софийская, 8' if self.option == 0 else 'Инициативная, 21')
+        address_input.send_keys('Софийская, 8')
 
     @allure.step('Клик на станцию метро')
     def click_metrostation(self):
@@ -56,7 +56,7 @@ class OrderPage(BasePage):
     @allure.step('Заполнить поле Телефон')
     def click_phone(self):
         phone_input = self.wait_and_find_element(self.PHONE)
-        phone_input.send_keys('+79819467999' if self.option == 0 else '+79819467777')
+        phone_input.send_keys('+79819467999')
 
     @allure.step('Клик на кнопку Далее')
     def click_next(self):
@@ -92,3 +92,7 @@ class OrderPage(BasePage):
     def click_button_yes(self):
         button_yes = self.wait_and_find_element(self.BUTTON_YES)
         button_yes.click()
+
+    @allure.step('Получение статуса Заказ оформлен')
+    def get_status_order(self):
+        return self.wait_and_find_element(self.STATUS_ORDER)
