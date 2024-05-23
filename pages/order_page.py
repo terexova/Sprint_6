@@ -26,7 +26,7 @@ class OrderPage(BasePage):
 
     @allure.step('Открытие страницы Яндекс.Самокат')
     def open_page(self):
-        self.open_url(UrlScooter.URL)
+        self.open_url(UrlScooter.URL_LOGIN)
 
     @allure.step('Заполнить поле Имя')
     def click_name(self):

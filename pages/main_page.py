@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
 
 from data import UrlScooter
 from selenium.webdriver.common.by import By
@@ -35,14 +34,9 @@ class MainPage(BasePage):
     def click_order_up(self):
         self.wait_and_find_element(self.BUTTON_REGISTRATION_UP).click()
 
-    @allure.step('Прокрутка страницы вниз')
-    def scroll_page(self):
-        button = self.wait_and_find_element_presence(self.BUTTON_REGISTRATION_DOWN)
-        self.driver.execute_script("arguments[0].scrollIntoView();", button)
-
     @allure.step('Клик на кнопку Заказать внизу страницы')
     def click_order_down(self):
-        self.driver.find_element(*self.BUTTON_REGISTRATION_DOWN).click()
+        self.wait_and_find_element(self.BUTTON_REGISTRATION_DOWN).click()
 
     @allure.step('Клик на логотип Самоката')
     def click_logo_Scooter(self):
@@ -50,16 +44,7 @@ class MainPage(BasePage):
 
     @allure.step('Клик на логотип Яндекс')
     def click_logo_Yandex_and_go(self):
-        handles_before = self.driver.window_handles
-        self.wait_and_find_element(self.LOGO_YANDEX).click()
-
-        wait = WebDriverWait(self.driver, 20)
-        wait.until(
-            lambda driver: len(handles_before) != len(driver.window_handles))
-
-        self.driver.switch_to.window(self.driver.window_handles[-1])
-
-
+        self.click_and_swith_to_new_window(self.LOGO_YANDEX)
 
 
 

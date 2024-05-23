@@ -50,74 +50,10 @@ class Answers(BasePage):
     def click_cookie(self):
         self.wait_and_find_element(self.cookie).click()
 
-    @allure.step('Клик на вопрос 1 "Сколько это стоит? И как оплатить?"')
-    def click_question_1(self):
-        self.wait_and_find_element(self.question_1).click()
-
-    @allure.step('Ответ на вопрос 1')
-    def get_answer_1(self):
-        return self.driver.find_element(*self.answer_1)
-
-    @allure.step('Клик на вопрос 2 "Хочу сразу несколько самокатов! Так можно?"')
-    def click_question_2(self):
-        self.driver.find_element(*self.question_2).click()
-
-    @allure.step('Ответ на вопрос 2')
-    def get_answer_2(self):
-        return self.driver.find_element(*self.answer_2)
-
-    @allure.step('Клик на вопрос 3 "Как рассчитывается время аренды?"')
-    def click_question_3(self):
-        self.driver.find_element(*self.question_3).click()
-
-    @allure.step('Ответ на вопрос 3')
-    def get_answer_3(self):
-        return self.driver.find_element(*self.answer_3)
-
-    @allure.step('Клик на вопрос 4 "Можно ли заказать самокат прямо на сегодня?"')
-    def click_question_4(self):
-        self.driver.find_element(*self.question_4).click()
-
-    @allure.step('Ответ на вопрос 4')
-    def get_answer_4(self):
-        return self.driver.find_element(*self.answer_4)
-
-    @allure.step('Клик на вопрос 5 "Можно ли продлить заказ или вернуть самокат раньше?"')
-    def click_question_5(self):
-        self.driver.find_element(*self.question_5).click()
-
-    @allure.step('Ответ на вопрос 5')
-    def get_answer_5(self):
-        return self.driver.find_element(*self.answer_5)
-
-    @allure.step('Клик на вопрос 6 "Вы привозите зарядку вместе с самокатом?"')
-    def click_question_6(self):
-        self.driver.find_element(*self.question_6).click()
-
-    @allure.step('Ответ на вопрос 6')
-    def get_answer_6(self):
-        return self.driver.find_element(*self.answer_6)
-
-    @allure.step('Клик на вопрос 7 "Можно ли отменить заказ?"')
-    def click_question_7(self):
-        self.driver.find_element(*self.question_7).click()
-
-    @allure.step('Ответ на вопрос 7')
-    def get_answer_7(self):
-        return self.driver.find_element(*self.answer_7)
-
-    @allure.step('Клик на вопрос 8 "Я жизу за МКАДом, привезёте?"')
-    def click_question_8(self):
-        self.driver.find_element(*self.question_8).click()
-
-    @allure.step('Ответ на вопрос 8')
-    def get_answer_8(self):
-        return self.driver.find_element(*self.answer_8)
-
     @allure.step('Клик на вопрос')
     def click_question(self, locator):
-        self.driver.find_element(*locator).click()
+        self.find_element(locator).click()
 
     @allure.step('Получение ответа')
     def get_answer_text(self, locator):
-        return self.driver.find_element(*locator).text
+        return self.find_element(locator).text
